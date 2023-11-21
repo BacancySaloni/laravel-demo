@@ -24,5 +24,9 @@ jobs:
 
               # Now we have got the access of EC2 and we will start the deploy .
               cd /home/ubuntu/laravel-demo &&
-              ls
+              docker build -t laravel-app . &&
+              docker stop backend &&
+              docker rm backend &&
+              docker run -d -p 81:8000 --name backend laravel-app &&
+              docker system prune -af
               '
